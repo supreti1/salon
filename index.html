@@ -5,498 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Welcome to Beauty and Threading</title>
   <meta name="description" content="Professional salon for threading, waxing, facials, and more. Book online in minutes." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg: #0f1115;          /* deep slate */
-      --panel: #151924;       /* card bg */
-      --panel-2: #1a2030;     /* alt card */
-      --accent: #e5b2ff;      /* lilac */
-      --accent-2: #90e0ef;    /* aqua */
-      --text: #e8ebf1;        /* near-white */
-      --muted: #a6b0c3;       /* muted text */
-      --ok: #8ef6b1;
-      --warn: #ffd166;
-      --danger: #ff6b6b;
-      --radius-xl: 20px;
-      --radius-lg: 14px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --shadow-soft: 0 6px 16px rgba(0,0,0,.25);
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text); background: radial-gradient(1200px 600px at 10% -10%, #1c2133 0, rgba(21,25,36,0) 60%),
-              radial-gradient(1000px 700px at 100% 0%, #1a2030 0, rgba(26,32,48,0) 70%), var(--bg);
-      line-height: 1.5;
-    }
-    a{ color: inherit; text-decoration: none; }
-    .container { width: min(1200px, 92vw); margin: 0 auto; }
-
-    /* Topbar */
-    header{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(15,17,21,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
-    .topbar{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
-    .brand{ display:flex; gap:12px; align-items:center; }
-    .logo{ width:36px; height:36px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow-soft); }
-    .brand h1{ font-size: 18px; letter-spacing:.3px; margin:0; font-weight:700; }
-    nav ul{ list-style:none; display:flex; gap:18px; margin:0; padding:0; align-items:center; }
-    nav a{ opacity:.9; padding:10px 14px; border-radius:10px; }
-    nav a:hover, nav a:focus{ background: rgba(255,255,255, .06); outline: none; }
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0a0c10; font-weight:700; border:0; cursor:pointer; box-shadow: var(--shadow);
-    }
-    .btn:focus-visible{ outline: 3px solid #ffffff55; outline-offset: 2px; }
-
-    /* Hero */
-    .hero{ padding: 70px 0 40px; position: relative; }
-    .hero-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap:28px; align-items:center; }
-    .hero-card{ background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow); }
-    .eyebrow{ display:inline-block; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color: var(--accent-2); font-weight:800; background: rgba(144,224,239,.12); padding:6px 10px; border-radius:20px; }
-    h2.display{ font-size: clamp(28px, 4vw, 42px); line-height:1.05; margin:16px 0 12px; }
-    p.lead{ color: var(--muted); font-size: clamp(14px, 1.7vw, 18px); }
-    .hero-points{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:14px; margin:20px 0 28px; }
-    .point{ display:flex; gap:10px; align-items:flex-start; background: rgba(255,255,255,.04); padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.06) }
-    .point .tick{ width:20px; height:20px; border-radius:6px; background: var(--ok); color:#072; font-weight:900; display:grid; place-items:center; font-size:14px; }
-    .hero-visual{ background: linear-gradient(145deg, #1b2130, #121622); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius-xl); padding: 24px; position: relative; overflow:hidden; }
-    .hero-visual .blob{ position:absolute; inset:auto -60px  -60px auto; width:260px; height:260px; background: radial-gradient(circle at 30% 30%, var(--accent) 0, transparent 60%), radial-gradient(circle at 70% 70%, var(--accent-2) 0, transparent 60%); filter: blur(40px); opacity:.4; }
-    .hero-visual .card{ background: #0f131d; border:1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; margin: 12px 0; }
-
-    /* Promo banner */
-    .promo{ margin: 18px 0 0; display:flex; gap:12px; align-items:center; background: linear-gradient(135deg, rgba(229,178,255,.15), rgba(144,224,239,.15)); border:1px solid rgba(255,255,255,.10); padding: 12px 16px; border-radius: 14px; }
-    .promo strong{ color: var(--accent-2); }
-
-    /* Section shells */
-    section{ padding: 60px 0; }
-    .section-title{ font-size: 26px; margin: 0 0 14px; }
-    .section-sub{ color: var(--muted); margin: 0 0 24px; }
-
-    /* Services */
-    .services-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
-    .service-card{ background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 18px; box-shadow: var(--shadow-soft); display:flex; justify-content:space-between; gap: 10px; align-items: center; }
-    .service-card h3{ font-size: 16px; margin:0; }
-    .badge{ font-size:11px; padding:6px 10px; border-radius: 999px; background: rgba(144,224,239,.15); color: var(--accent-2); border:1px solid rgba(144,224,239,.35) }
-    .price{ font-weight: 800; letter-spacing:.5px; }
-
-    /* Booking */
-    .booking{ background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); }
-    form{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; background: var(--panel-2); padding: 20px; border:1px solid rgba(255,255,255,.09); border-radius: 16px; box-shadow: var(--shadow-soft); }
-    label{ font-size:13px; color: var(--muted); display:block; margin:0 0 6px; }
-    input, select, textarea{ width:100%; padding: 12px 12px; border-radius: 10px; border:1px solid rgba(255,255,255,.14); background:#0c0f16; color: var(--text); }
-    input:focus, select:focus, textarea:focus{ outline: 2px solid rgba(144,224,239,.5); border-color: transparent; }
-    .span-2{ grid-column: 1 / -1; }
-    .muted{ color: var(--muted); font-size: 13px; }
-    .inline{ display:flex; gap:12px; align-items:center; }
-
-    /* FAQ */
-    details{ background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding: 14px 16px; }
-    summary{ cursor:pointer; font-weight:600; }
-    details[open]{ background: #13192a; }
-
-    /* Footer */
-    footer{ padding: 40px 0 70px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06) }
-
-    /* Toast/Modal */
-    .toast{ position: fixed; right: 16px; bottom: 16px; background: #101522; border:1px solid rgba(255,255,255,.12); color: var(--text); padding: 14px 16px; border-radius: 12px; box-shadow: var(--shadow); display:none; }
-    .modal-backdrop{ position: fixed; inset:0; background: rgba(0,0,0,.5); display:none; align-items:center; justify-content:center; padding: 16px; }
-    .modal{ width:min(560px, 96vw); background: var(--panel-2); border-radius: 16px; border:1px solid rgba(255,255,255,.1); box-shadow: var(--shadow); padding: 22px; }
-    .modal h3{ margin-top:0; }
-    .modal .actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:14px; }
-
-    /* Responsive */
-    @media (max-width: 880px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      form{ grid-template-columns: 1fr; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior: auto !important; animation: none !important; transition: none !important; }
-    }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#f9f9f9; color:#333; }
+    header { background:#d63384; padding:20px; color:#fff; position:sticky; top:0; }
+    header .container { display:flex; justify-content:space-between; align-items:center; }
+    nav ul { list-style:none; display:flex; gap:15px; margin:0; padding:0; }
+    nav a { color:#fff; text-decoration:none; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    .services { padding:40px 20px; max-width:1200px; margin:auto; }
+    .services h2 { text-align:center; margin-bottom:30px; }
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; }
+    .card { background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); padding:20px; transition:transform 0.2s; }
+    .card:hover { transform:translateY(-5px); }
+    .card img { width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:15px; }
+    .card h3 { margin:0 0 10px; }
+    .card p { font-size:14px; color:#555; }
+    .price { font-weight:bold; margin-top:10px; color:#d63384; }
+    .booking { background:#fff; padding:40px 20px; max-width:800px; margin:40px auto; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+    form { display:grid; gap:15px; }
+    label { font-weight:bold; }
+    input, select, textarea, button { padding:10px; font-size:14px; border-radius:5px; border:1px solid #ccc; }
+    button { background:#d63384; color:#fff; border:none; cursor:pointer; }
+    button:hover { background:#b42c6d; }
   </style>
 </head>
 <body>
-  <header aria-label="Main navigation">
-    <div class="container topbar">
-      <a href="#top" class="brand" aria-label="Homepage">
-        <div class="logo" aria-hidden="true"></div>
-        <h1>Welcome to Beauty and Threading</h1>
-      </a>
-      <nav aria-label="Primary">
+  <header>
+    <div class="container">
+      <h1>Welcome to Beauty and Threading</h1>
+      <nav>
         <ul>
           <li><a href="#services">Services</a></li>
-          <li><a href="#offers">Offers</a></li>
-          <li><a href="#booking" class="btn" aria-label="Book appointment">Book Now</a></li>
+          <li><a href="#booking">Book Now</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <span class="eyebrow">Threading • Waxing • Facials</span>
-          <h2 class="display">Glow on your schedule. Book in seconds, relax for hours.</h2>
-          <p class="lead">A modern salon experience with transparent pricing, instant online booking, and automatic confirmations to your inbox. Walk out with brows that wow and skin that’s smooth like velvet.</p>
-          <div class="hero-points" role="list">
-            <div class="point" role="listitem"><div class="tick" aria-hidden="true">✓</div> Hygienic, sanitized stations</div>
-            <div class="point" role="listitem"><div class="tick" aria-hidden="true">✓</div> Licensed, experienced estheticians</div>
-            <div class="point" role="listitem"><div class="tick" aria-hidden="true">✓</div> Same‑day bookings</div>
-            <div class="point" role="listitem"><div class="tick" aria-hidden="true">✓</div> SMS/email reminders*</div>
-          </div>
-          <div class="inline">
-            <a class="btn" href="#booking">Book an Appointment</a>
-            <span class="muted">*Reminders require email/SMS setup — see developer notes in code.</span>
-          </div>
-          <div class="promo" id="offers"><strong>Limited Time:</strong>&nbsp;Get <strong>15% OFF</strong> first visit with code <strong>GLOW15</strong> · Student Tuesdays 10% OFF</div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="blob"></div>
-          <div class="card"><b>Brow Perfection</b><span class="badge">15 min</span></div>
-          <div class="card"><b>Full Arm Wax</b><span class="badge">30–40 min</span></div>
-          <div class="card"><b>Glow Facial</b><span class="badge">45–60 min</span></div>
-          <p class="muted">Natural results. Gentle techniques. Friendly prices.</p>
-        </div>
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x150" alt="Eyebrow Threading">
+        <h3>Eyebrow Threading</h3>
+        <p>Perfectly shaped brows for a natural look.</p>
+        <div class="price">$12</div>
       </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" aria-labelledby="services-title">
-      <div class="container">
-        <h2 id="services-title" class="section-title">Services & Prices</h2>
-        <p class="section-sub">Clear, simple pricing. Mix & match. Add multiple services at checkout.</p>
-        <div class="services-grid" id="servicesGrid" aria-live="polite">
-          <!-- Populated by JS from the SERVICES list below -->
-        </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x150" alt="Upper Lip">
+        <h3>Upper Lip</h3>
+        <p>Gentle and precise hair removal.</p>
+        <div class="price">$8</div>
       </div>
-    </section>
-
-    <!-- BOOKING -->
-    <section id="booking" class="booking" aria-labelledby="booking-title">
-      <div class="container">
-        <h2 id="booking-title" class="section-title">Book an Appointment</h2>
-        <p class="section-sub">Select services, pick a date & time, and get instant email confirmation.
-        </p>
-
-        <form id="bookingForm" novalidate aria-describedby="bookingHelp">
-          <div>
-            <label for="name">Full name</label>
-            <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
-          </div>
-          <div>
-            <label for="phone">Phone (optional for SMS reminders)</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555" />
-          </div>
-          <div>
-            <label for="service">Primary service</label>
-            <select id="service" name="service" required aria-describedby="servicePrice"></select>
-            <div class="muted" id="servicePrice" aria-live="polite"></div>
-          </div>
-          <div class="span-2">
-            <label for="addons">Add-on services (optional)</label>
-            <select id="addons" name="addons" multiple size="4" aria-label="Add-on services"></select>
-          </div>
-          <div>
-            <label for="date">Date</label>
-            <input id="date" name="date" type="date" required />
-          </div>
-          <div>
-            <label for="time">Time</label>
-            <input id="time" name="time" type="time" required />
-          </div>
-          <div class="span-2">
-            <label for="notes">Notes (skin sensitivity, preferences, etc.)</label>
-            <textarea id="notes" name="notes" rows="3" placeholder="Anything we should know?"></textarea>
-          </div>
-          <div class="inline span-2" style="justify-content: space-between;">
-            <div class="muted" id="bookingHelp">By booking, you agree to our 24‑hour reschedule policy.</div>
-            <button class="btn" type="submit">Confirm Booking</button>
-          </div>
-        </form>
-
-        <p class="muted" style="margin-top:12px">After you submit, you'll see a confirmation and receive an email. The salon also receives the same email. (Configure email in <code>enableEmail()</code> in the code.)</p>
-      </div>
-    </section>
-
-    <!-- FAQ / Accessibility highlights -->
-    <section aria-labelledby="faq-title">
-      <div class="container" >
-        <h2 id="faq-title" class="section-title">Good to know</h2>
-        <div class="container" style="display:grid; grid-template-columns: 1.2fr 1fr; gap:16px; align-items:start;">
-          <div style="display:grid; gap:10px;">
-            <details>
-              <summary>Accessibility & comfort</summary>
-              <div class="muted">High‑contrast design, keyboard‑navigable forms, focus outlines, and reduced‑motion support. Let us know if you need fragrance‑free sessions or extra time. ADA‑friendly entrance available.</div>
-            </details>
-            <details>
-              <summary>Hygiene</summary>
-              <div class="muted">We sanitize equipment between every client and use disposable tools where appropriate.</div>
-            </details>
-            <details>
-              <summary>Rescheduling</summary>
-              <div class="muted">Change or cancel free up to 24 hours before your slot. Late cancellations may incur a small fee.</div>
-            </details>
-          </div>
-          <div style="background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:16px;">
-            <strong>Find us</strong>
-            <div class="muted">1234 Main Street, Your City, MI • Open daily 10am – 7pm</div>
-            <div style="height:230px; background:#0e1320; border-radius:12px; margin-top:10px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.06);">Map embed here</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-      <div>© <span id="year"></span> Beauty Parkour. All rights reserved.</div>
-      <div style="display:flex; gap:12px; align-items:center;">
-        <a href="#services" class="badge">Price list</a>
-        <a href="#booking" class="badge">Book now</a>
-        <a href="#top" class="badge">Back to top</a>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x150" alt="Full Legs">
+        <h3>Full Legs</h3>
+        <p>Silky smooth legs with lasting results.</p>
+        <div class="price">$45</div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <div class="toast" role="status" aria-live="polite" id="toast" tabindex="-1"></div>
+  <section id="booking" class="booking">
+    <h2>Book an Appointment</h2>
+    <form>
+      <label for="service">Choose Service</label>
+      <select id="service" name="service" required>
+        <option value="">-- Select a Service --</option>
+        <option value="eyebrow">Eyebrow Threading</option>
+        <option value="upperlip">Upper Lip</option>
+        <option value="lowerlip">Lower Lip</option>
+        <option value="chin">Chin</option>
+        <option value="neck">Neck</option>
+        <option value="fullarm">Full Arm</option>
+        <option value="lowerlegs">Lower Legs</option>
+        <option value="fulllegs">Full Legs</option>
+        <option value="belly">Belly</option>
+        <option value="fullback">Full Back</option>
+        <option value="fullfront">Full Front</option>
+        <option value="lowerbackfront">Lower Back / Front</option>
+      </select>
 
-  <div class="modal-backdrop" id="confirmModal" aria-hidden="true" aria-labelledby="confirmTitle" role="dialog">
-    <div class="modal" role="document">
-      <h3 id="confirmTitle">Booking Confirmed</h3>
-      <p class="muted" id="confirmText">We’ve reserved your slot. A confirmation email is on the way.</p>
-      <div class="actions">
-        <button class="btn" id="addToCalendarBtn">Add to Calendar (.ics)</button>
-        <button class="btn" id="closeModalBtn" style="background: #2de0d8;">Close</button>
-      </div>
-    </div>
-  </div>
+      <label for="date">Date</label>
+      <input id="date" name="date" type="date" required />
 
-  <script>
-    // ====== DATA (edit prices/labels here) ======
-    const SERVICES = [
-      { id: 'eyebrow', name: 'Eyebrow Threading', price: 12 },
-      { id: 'upper-lip', name: 'Upper Lip', price: 8 },
-      { id: 'lower-lip', name: 'Lower Lip', price: 6 },
-      { id: 'chin', name: 'Chin', price: 10 },
-      { id: 'neck', name: 'Neck', price: 12 },
-      { id: 'full-arm', name: 'Full Arm', price: 30 },
-      { id: 'lower-legs', name: 'Lower Legs', price: 28 },
-      { id: 'full-legs', name: 'Full Legs', price: 45 },
-      { id: 'belly', name: 'Belly', price: 15 },
-      { id: 'full-back', name: 'Full Back', price: 40 },
-      { id: 'full-front', name: 'Full Front', price: 40 },
-      { id: 'lower-back-front', name: 'Lower Back / Front', price: 25 },
-    ];
+      <label for="time">Time</label>
+      <input id="time" name="time" type="time" required />
 
-    // ====== UTIL ======
-    const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => document.querySelectorAll(sel);
-    function money(n){ return `$${Number(n).toFixed(2)}` }
+      <label for="notes">Notes (skin sensitivity, preferences, etc.)</label>
+      <textarea id="notes" name="notes" rows="3"></textarea>
 
-    // A11y toast
-    function toast(msg){
-      const t = $('#toast');
-      t.textContent = msg;
-      t.style.display = 'block';
-      t.focus();
-      setTimeout(()=> t.style.display = 'none', 3500);
-    }
-
-    // ====== RENDER SERVICES ======
-    function renderServices(){
-      const grid = $('#servicesGrid');
-      grid.innerHTML = '';
-      for(const s of SERVICES){
-        const el = document.createElement('div');
-        el.className = 'service-card';
-        el.innerHTML = `<div><h3>${s.name}</h3><div class="muted">Quick & gentle</div></div><div class="price">${money(s.price)}</div>`;
-        grid.appendChild(el);
-      }
-      // form selects
-      const serviceSel = $('#service');
-      const addonsSel = $('#addons');
-      serviceSel.innerHTML = SERVICES.map(s => `<option value="${s.id}">${s.name} — ${money(s.price)}</option>`).join('');
-      addonsSel.innerHTML = SERVICES.map(s => `<option value="${s.id}">${s.name} — ${money(s.price)}</option>`).join('');
-      updateServicePrice();
-    }
-
-    function updateServicePrice(){
-      const id = $('#service').value;
-      const svc = SERVICES.find(s => s.id === id);
-      $('#servicePrice').textContent = svc ? `Selected: ${svc.name} · ${money(svc.price)}` : '';
-    }
-
-    $('#service').addEventListener('change', updateServicePrice);
-
-    // ====== BOOKING SUBMIT ======
-    const form = $('#bookingForm');
-
-    function validateForm(){
-      const required = ['name','email','service','date','time'];
-      for(const id of required){
-        const el = document.getElementById(id);
-        if(!el.value){ el.focus(); toast(`Please enter ${id}.`); return false; }
-      }
-      // basic email check
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#email').value)){
-        $('#email').focus(); toast('Please enter a valid email.'); return false;
-      }
-      // date not in the past
-      const chosenDate = new Date($('#date').value + 'T' + ($('#time').value || '00:00'));
-      if(isNaN(chosenDate.getTime()) || chosenDate < new Date()){
-        $('#date').focus(); toast('Pick a future date/time.'); return false;
-      }
-      return true;
-    }
-
-    function getBookingPayload(){
-      const svc = SERVICES.find(s => s.id === $('#service').value);
-      const addonIds = Array.from($('#addons').selectedOptions).map(o=>o.value);
-      const addons = SERVICES.filter(s => addonIds.includes(s.id));
-      const total = (svc?.price || 0) + addons.reduce((sum,a)=> sum + a.price, 0);
-      return {
-        name: $('#name').value.trim(),
-        email: $('#email').value.trim(),
-        phone: $('#phone').value.trim(),
-        service: svc?.name,
-        addons: addons.map(a => a.name),
-        date: $('#date').value,
-        time: $('#time').value,
-        notes: $('#notes').value.trim(),
-        total
-      }
-    }
-
-    // ---- EMAIL: choose one approach below ----
-    // 1) EmailJS (client-only). Create a free account at https://www.emailjs.com
-    //    Replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID and
-    //    ensure the email template contains variables: name, email, phone, service, addons, date, time, notes, total.
-    //    Then call enableEmail({ provider: 'emailjs', publicKey: '...', serviceId: '...', templateId: '...', salonEmail: 'salon@example.com' })
-
-    // 2) Server endpoint / serverless function.
-    //    Deploy an endpoint at /api/book that accepts POST JSON { booking } and sends two emails (customer & salon).
-    //    Then call enableEmail({ provider: 'api', endpoint: '/api/book' }) below.
-
-    let EMAIL_CONFIG = null;
-    function enableEmail(cfg){ EMAIL_CONFIG = cfg; }
-
-    async function sendEmails(booking){
-      if(!EMAIL_CONFIG){
-        console.warn('Email not configured. See enableEmail() in code.');
-        return { ok: true, skipped: true };
-      }
-      if(EMAIL_CONFIG.provider === 'api'){
-        const res = await fetch(EMAIL_CONFIG.endpoint, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ booking }) });
-        if(!res.ok) throw new Error('API email failed');
-        return res.json();
-      }
-      if(EMAIL_CONFIG.provider === 'emailjs'){
-        if(!window.emailjs){ throw new Error('EmailJS SDK not loaded'); }
-        // customer email
-        await emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, { ...booking, recipient: booking.email });
-        // salon copy
-        await emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, { ...booking, recipient: EMAIL_CONFIG.salonEmail });
-        return { ok: true };
-      }
-      throw new Error('Unknown email provider');
-    }
-
-    // OPTIONAL: Load EmailJS SDK if desired (uncomment next 3 lines to auto-load)
-    // const emailJsScript = document.createElement('script');
-    // emailJsScript.src = 'https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js';
-    // document.head.appendChild(emailJsScript);
-
-    // If you use EmailJS, call this after SDK is available:
-    // emailjs?.init('YOUR_PUBLIC_KEY');
-    // enableEmail({ provider: 'emailjs', publicKey: 'YOUR_PUBLIC_KEY', serviceId: 'YOUR_SERVICE_ID', templateId: 'YOUR_TEMPLATE_ID', salonEmail: 'salon@example.com' });
-
-    // If you use your own API:
-    // enableEmail({ provider: 'api', endpoint: '/api/book' });
-
-    // ====== ICS FILE (Add to Calendar) ======
-    function makeICS(booking){
-      const dtStart = new Date(`${booking.date}T${booking.time}`);
-      const dtEnd = new Date(dtStart.getTime() + 45*60000); // default 45 minutes
-      function dt(v){ return v.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z'; }
-      const ics = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Beauty Parkour//Booking//EN',
-        'BEGIN:VEVENT',
-        `UID:${crypto.randomUUID()}`,
-        `DTSTAMP:${dt(new Date())}`,
-        `DTSTART:${dt(dtStart)}`,
-        `DTEND:${dt(dtEnd)}`,
-        `SUMMARY:Salon — ${booking.service}`,
-        `DESCRIPTION:Services: ${[booking.service, ...booking.addons].filter(Boolean).join(', ')}\\nTotal: ${money(booking.total)}\\nNotes: ${booking.notes || '—'}`,
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\n');
-      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-      return URL.createObjectURL(blob);
-    }
-
-    // ====== MODAL ======
-    function openModal(text){
-      $('#confirmText').textContent = text || 'We’ve reserved your slot. A confirmation email is on the way.';
-      const bd = $('#confirmModal');
-      bd.style.display = 'flex';
-      bd.setAttribute('aria-hidden','false');
-    }
-    function closeModal(){
-      const bd = $('#confirmModal');
-      bd.style.display = 'none';
-      bd.setAttribute('aria-hidden','true');
-    }
-
-    // ====== INIT ======
-    function setMinDate(){
-      const today = new Date();
-      today.setDate(today.getDate() + 0);
-      const iso = today.toISOString().split('T')[0];
-      $('#date').setAttribute('min', iso);
-    }
-
-    renderServices();
-    setMinDate();
-    $('#year').textContent = new Date().getFullYear();
-
-    form.addEventListener('submit', async (e) =>{
-      e.preventDefault();
-      if(!validateForm()) return;
-      const booking = getBookingPayload();
-      try{
-        // Send emails (config in enableEmail)
-        await sendEmails(booking);
-        // Persist locally
-        localStorage.setItem('lastBooking', JSON.stringify(booking));
-        // Success UX
-        openModal(`Thank you, ${booking.name}. Your ${booking.service} on ${booking.date} at ${booking.time} is confirmed. Total: ${money(booking.total)}.`);
-        const icsUrl = makeICS(booking);
-        $('#addToCalendarBtn').onclick = () => {
-          const a = document.createElement('a');
-          a.href = icsUrl; a.download = 'salon-booking.ics'; a.click();
-        }
-        toast('Booking confirmed. A confirmation email is on the way.');
-        form.reset();
-        updateServicePrice();
-      }catch(err){
-        console.error(err);
-        toast('We hit a snag sending emails. Your reservation was saved locally. Please call the salon.');
-      }
-    });
-
-    $('#closeModalBtn').addEventListener('click', closeModal);
-
-    // Keyboard close for modal
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape') closeModal();
-    });
-  </script>
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </section>
 </body>
 </html>
