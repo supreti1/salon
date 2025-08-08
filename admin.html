@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon Admin - Manage Availability</title>
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="admin.js"></script>
+</head>
+<body>
+<header>
+  <h1>Salon Admin</h1>
+</header>
+
+<div id="authSection">
+  <h2>Login</h2>
+  <input type="email" id="adminEmail" placeholder="Email">
+  <input type="password" id="adminPass" placeholder="Password">
+  <button id="loginBtn">Login</button>
+</div>
+
+<div id="adminPanel" style="display:none;">
+  <h2>Add Availability</h2>
+  <label>Date</label>
+  <input type="date" id="availDate">
+  
+  <label>Time</label>
+  <input type="time" id="availTime">
+
+  <button id="addAvailBtn">Add Slot</button>
+
+  <h2>Current Availability</h2>
+  <ul id="availabilityList"></ul>
+</div>
+</body>
+</html>
