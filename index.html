@@ -1,102 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Welcome to Beauty and Threading</title>
-  <meta name="description" content="Professional salon for threading, waxing, facials, and more. Book online in minutes." />
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#f9f9f9; color:#333; }
-    header { background:#d63384; padding:20px; color:#fff; position:sticky; top:0; }
-    header .container { display:flex; justify-content:space-between; align-items:center; }
-    nav ul { list-style:none; display:flex; gap:15px; margin:0; padding:0; }
-    nav a { color:#fff; text-decoration:none; font-weight:bold; }
-    nav a:hover { text-decoration:underline; }
-    .services { padding:40px 20px; max-width:1200px; margin:auto; }
-    .services h2 { text-align:center; margin-bottom:30px; }
-    .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; }
-    .card { background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); padding:20px; transition:transform 0.2s; }
-    .card:hover { transform:translateY(-5px); }
-    .card img { width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:15px; }
-    .card h3 { margin:0 0 10px; }
-    .card p { font-size:14px; color:#555; }
-    .price { font-weight:bold; margin-top:10px; color:#d63384; }
-    .booking { background:#fff; padding:40px 20px; max-width:800px; margin:40px auto; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-    form { display:grid; gap:15px; }
-    label { font-weight:bold; }
-    input, select, textarea, button { padding:10px; font-size:14px; border-radius:5px; border:1px solid #ccc; }
-    button { background:#d63384; color:#fff; border:none; cursor:pointer; }
-    button:hover { background:#b42c6d; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Beauty and Threading</title>
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="script.js"></script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Welcome to Beauty and Threading</h1>
-      <nav>
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#booking">Book Now</a></li>
-        </ul>
-      </nav>
+<header>
+  <h1>Welcome to Beauty and Threading</h1>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#booking">Book Now</a>
+  </nav>
+</header>
+
+<section id="hero" style="background:url('salon.jpg') center/cover no-repeat;">
+  <div class="hero-content">
+    <h2>Your Beauty, Our Passion</h2>
+    <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+  </div>
+</section>
+
+<section id="services">
+  <h2 style="text-align:center;margin-top:20px;">Our Services</h2>
+  <div class="services-list">
+    <div class="service-card">
+      Eyebrow Threading - $12
+      <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book</button>
     </div>
-  </header>
-
-  <section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/300x150" alt="Eyebrow Threading">
-        <h3>Eyebrow Threading</h3>
-        <p>Perfectly shaped brows for a natural look.</p>
-        <div class="price">$12</div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/300x150" alt="Upper Lip">
-        <h3>Upper Lip</h3>
-        <p>Gentle and precise hair removal.</p>
-        <div class="price">$8</div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/300x150" alt="Full Legs">
-        <h3>Full Legs</h3>
-        <p>Silky smooth legs with lasting results.</p>
-        <div class="price">$45</div>
-      </div>
+    <div class="service-card">
+      Upper Lip - $8
+      <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book</button>
     </div>
-  </section>
+    <div class="service-card">
+      Full Legs - $45
+      <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book</button>
+    </div>
+  </div>
+</section>
 
-  <section id="booking" class="booking">
-    <h2>Book an Appointment</h2>
-    <form>
-      <label for="service">Choose Service</label>
-      <select id="service" name="service" required>
-        <option value="">-- Select a Service --</option>
-        <option value="eyebrow">Eyebrow Threading</option>
-        <option value="upperlip">Upper Lip</option>
-        <option value="lowerlip">Lower Lip</option>
-        <option value="chin">Chin</option>
-        <option value="neck">Neck</option>
-        <option value="fullarm">Full Arm</option>
-        <option value="lowerlegs">Lower Legs</option>
-        <option value="fulllegs">Full Legs</option>
-        <option value="belly">Belly</option>
-        <option value="fullback">Full Back</option>
-        <option value="fullfront">Full Front</option>
-        <option value="lowerbackfront">Lower Back / Front</option>
-      </select>
+<section id="booking">
+  <h2>Book an Appointment</h2>
+  <form id="bookingForm">
+    <label>Name</label>
+    <input type="text" id="name" required>
+    
+    <label>Email</label>
+    <input type="email" id="email" required>
 
-      <label for="date">Date</label>
-      <input id="date" name="date" type="date" required />
+    <label>Service</label>
+    <select id="service" required>
+      <option value="">--Select--</option>
+      <option value="Eyebrow Threading">Eyebrow Threading</option>
+      <option value="Upper Lip">Upper Lip</option>
+      <option value="Full Legs">Full Legs</option>
+    </select>
 
-      <label for="time">Time</label>
-      <input id="time" name="time" type="time" required />
+    <label>Date</label>
+    <input type="date" id="date" required>
 
-      <label for="notes">Notes (skin sensitivity, preferences, etc.)</label>
-      <textarea id="notes" name="notes" rows="3"></textarea>
+    <label>Available Times</label>
+    <select id="time" required></select>
 
-      <button type="submit">Confirm Booking</button>
-    </form>
-  </section>
+    <button type="submit">Confirm Booking</button>
+  </form>
+</section>
 </body>
 </html>
